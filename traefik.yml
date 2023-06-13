@@ -1,0 +1,13 @@
+log:
+  filePath: "/var/log/traefik.log"
+  level: DEBUG
+
+accessLog:
+  filePath: "/var/log/access.log"
+  bufferingSize: 100
+  statusCodes:
+      - "300-302"
+      - "400-499"
+  retryAttempts: true
+  minDuration: "10ms"
+

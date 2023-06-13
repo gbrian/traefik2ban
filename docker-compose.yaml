@@ -1,0 +1,22 @@
+version: '2'
+services:
+  fail2ban:
+    image: traefik2ban:latest
+    build: .
+    restart: unless-stopped
+    network_mode: "host"
+    cap_add:
+     - NET_ADMIN
+     - NET_RAW
+    volumes:
+     - /var/log:/var/log
+     # - /home/geekland/services/fail2ban/data:/data
+    env_file:
+      - .env
+    command:
+      # LOGS
+      - "--log.level=DEBUG"
+      - "--log.filepath=/var/log/traefik.log"
+      - "--accesslog.filepath=/var/log/access.log"
+      - "--accesslog=true"
+      - "--accesslog.bufferingsize=100"
